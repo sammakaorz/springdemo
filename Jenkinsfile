@@ -16,29 +16,21 @@ pipeline {
            }
         }
 
-        stage('Build Docker'){
-            steps{
-                script{
-                    sh '''
-                    echo 'Buid Docker Image'
-                    docker build -t sammakaorz/mavenspringdemo:${BUILD_NUMBER} .
-                    '''
-                }
+       stage('Build and Push Docker Image') {
+      environment {
+        DOCKER_IMAGE = "sammakaorz/mavenspringdemo:${BUILD_NUMBER}"
+        REGISTRY_CREDENTIALS = credentials('docker')
+      }
+      steps {
+        script {
+            sh 'cd springdemo && docker build -t ${DOCKER_IMAGE} .'
+            def dockerImage = docker.image("${DOCKER_IMAGE}")
+            docker.withRegistry('https://hub.docker.com/', "docker") {
+                dockerImage.push()
             }
         }
-
-        stage('Push the artifacts'){
-           steps{
-                script{
-                    sh '''
-                    echo 'Push to Repo'
-                    docker push sammakaorz/mavenspringdemo:${BUILD_NUMBER}
-                    REGISTRY_CREDENTIALS = credentials('docker')
-			'''
-                }
-            }
-        }
-        
+      }
+    } 
         stage('Checkout K8S manifest SCM'){
             steps {
                 git credentialsId: 'github', 
