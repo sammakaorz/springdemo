@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mavenspringdemo
+  name: mavenspringdemo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mavenspringdemo
+  template:
+    metadata:
+      labels:
+        app: mavenspringdemo
+    spec:
+      containers:
+      - image: sammakaorz/mavenspringdemo
+        name: mavenspringdemo
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
