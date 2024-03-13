@@ -42,7 +42,7 @@ pipeline {
         stage('Update K8S manifest & push to Repo'){
             steps {
                 script{
-                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'sammakaorz@hotmail.com')]) {
                         sh '''
                         cat deployment.yaml
 			sed -i "s/mavenspringdemo:.*/mavenspringdemo:${BUILD_NUMBER}/g" deployment.yaml
