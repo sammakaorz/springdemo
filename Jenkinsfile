@@ -45,10 +45,10 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh '''
                         cat deployment.yaml
-                        sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
-                        cat deploy.yaml
-                        git add deploy.yaml
-                        git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
+                        sed -i '' "s/32/${BUILD_NUMBER}/g" deployment.yaml
+                        cat deployment.yaml
+                        git add deployment.yaml
+                        git commit -m 'Updated the deployment yaml | Jenkins Pipeline'
                         git remote -v
                         git push https://github.com/sammakaorz/springdemo.git HEAD:main
                         '''                        
