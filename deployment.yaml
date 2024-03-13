@@ -15,7 +15,7 @@ spec:
         app: mavenspringdemo
     spec:
       containers:
-        - image: sammakaorz/mavenspringdemo:latest
+        - image: sammakaorz/mavenspringdemo:3
         name: mavenspringdemo
         imagePullPolicy: Always
         ports:
