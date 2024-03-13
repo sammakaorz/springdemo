@@ -33,7 +33,8 @@ pipeline {
                     sh '''
                     echo 'Push to Repo'
                     docker push sammakaorz/mavenspringdemo:${BUILD_NUMBER}
-                    '''
+                    REGISTRY_CREDENTIALS = credentials('docker')
+			'''
                 }
             }
         }
