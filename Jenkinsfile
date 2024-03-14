@@ -36,6 +36,9 @@ pipeline {
 
         stage('Update K8S manifest & push to Repo'){
             steps {
+		environment {
+                        GITHUB_PERSONAL_TOKEN = credentials('GITHUB_PERSONAL_TOKEN')
+                }
                 script{
                         sh '''
                         git config --global user.email "sammakaorz@hotmail.com"
