@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - image: sammakaorz/mavenspringdemo:20
-        name: mavenspringdemo
-        imagePullPolicy: Always
-        ports:
+          name: mavenspringdemo
+          imagePullPolicy: Always
+          ports:
           - containerPort: 8080
