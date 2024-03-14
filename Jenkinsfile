@@ -35,24 +35,24 @@ pipeline {
         }
 
         stage('Update K8S manifest & push to Repo'){
-            steps {
-		environment {
+            environment {
                         GITHUB_PERSONAL_TOKEN = credentials('GITHUB_PERSONAL_TOKEN')
                 }
-                script{
-                        sh '''
-                        git config --global user.email "sammakaorz@hotmail.com"
-                        git config --global user.name "sammakaorz"
-                        cat deployment.yaml
-                        sed -i "s/mavenspringdemo:.*/mavenspringdemo:${BUILD_NUMBER}/g" deployment.yaml
-                        cat deployment.yaml
-                        git add deployment.yaml
-                        git commit -m 'Updated the deployment yaml | Jenkins Pipeline'
-                        git remote -v
-                        git push https://$GITHUB_PERSONAL_TOKEN@github.com/sammakaorz/springdemo.git HEAD:main
-                        '''
-                }
-            }
-        }
-    }
+		steps {
+                	script{
+                        	sh '''
+	                        git config --global user.email "sammakaorz@hotmail.com"
+	                        git config --global user.name "sammakaorz"
+        	                cat deployment.yaml
+                	        sed -i "s/mavenspringdemo:.*/mavenspringdemo:${BUILD_NUMBER}/g" deployment.yaml
+                        	cat deployment.yaml
+	                        git add deployment.yaml
+        	                git commit -m 'Updated the deployment yaml | Jenkins Pipeline'
+                	        git remote -v
+                        	git push https://$GITHUB_PERSONAL_TOKEN@github.com/sammakaorz/springdemo.git HEAD:main
+                        	'''
+                		}
+            		}
+        	}
+    	}
 }              
