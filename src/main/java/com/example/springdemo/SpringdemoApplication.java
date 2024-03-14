@@ -11,7 +11,7 @@ public class SpringdemoApplication {
 
         @GetMapping("/message")
         public String welcome(){
-                return "Congratulation you successfully deployed your application to Kubernetes!!";
+                return "Awesome!! your application is successfully deployed to Kubernetes!!";
         }
 
         public static void main(String[] args) {
